@@ -1,0 +1,56 @@
+# Base class
+class Smartphone:
+    def __init__(self, brand, model, storage, battery):
+        self.__brand = brand            # Encapsulated attribute
+        self.model = model
+        self.storage = storage
+        self.battery = battery
+
+    # Encapsulated method to access private attribute
+    def get_brand(self):
+        return self.__brand
+
+    def charge(self):
+        print(f"{self.model} is charging...")
+
+    def info(self):
+        print(f"{self.get_brand()} {self.model} with {self.storage}GB storage and {self.battery}mAh battery.")
+
+# Subclass
+class GamingPhone(Smartphone):
+    def __init__(self, brand, model, storage, battery, cooling_system):
+        super().__init__(brand, model, storage, battery)
+        self.cooling_system = cooling_system
+
+    def play_game(self):
+        print(f"{self.model} is playing a high-end game using {self.cooling_system} cooling.")
+
+    # Polymorphism: overriding base class method
+    def info(self):
+        super().info()
+        print("This is a gaming phone with advanced cooling system.")
+
+# Another subclass
+class CameraPhone(Smartphone):
+    def __init__(self, brand, model, storage, battery, camera_megapixels):
+        super().__init__(brand, model, storage, battery)
+        self.camera_megapixels = camera_megapixels
+
+    def take_photo(self):
+        print(f"{self.model} takes a {self.camera_megapixels}MP photo.")
+
+# Main Program
+phone1 = Smartphone("Nokia", "Classic", 64, 3000)
+gaming_phone = GamingPhone("Asus", "ROG Phone", 128, 6000, "liquid")
+camera_phone = CameraPhone("Samsung", "Galaxy S21", 256, 4000, 108)
+
+# Using methods
+phone1.info()
+print()
+
+gaming_phone.info()
+gaming_phone.play_game()
+print()
+
+camera_phone.info()
+camera_phone.take_photo()
